@@ -18,7 +18,7 @@ class PreBuild {
             )
         ) {
             jenkins.node(jenkins.POD_LABEL){
-                jenkins.container('gradle'){
+                jenkins.container('flutter'){
                     jenkins.sh label: "Pre-Build flutter", 
                                script: "flutter doctor -v"
                 }
