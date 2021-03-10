@@ -19,8 +19,13 @@ class PreBuild {
         ) {
             jenkins.node(jenkins.POD_LABEL){
                 jenkins.container('flutter'){
-                    jenkins.sh label: "Pre-Build flutter", 
-                               script: "flutter doctor -v"
+                    try{
+                        jenkins.sh label: "Pre-Build flutter", 
+                                script: "flutter doctor -v"
+                    }
+                    catch(Exception e){
+                        jenkins.unstable("AN error occured during build step. Please, verify the logs.")
+                    }
                 }
             }
         }
