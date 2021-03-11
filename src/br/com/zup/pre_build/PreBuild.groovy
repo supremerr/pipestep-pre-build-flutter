@@ -23,7 +23,7 @@ class PreBuild {
                         jenkins.sh label: "Pre-Build flutter", 
                                 script: "flutter doctor -v"
                         def pubspecYaml = jenkins.readYaml file: 'pubspec.yaml'
-                        jenkins.env.APP_VERSION = pubspecYaml.version
+                        jenkins.env.APP_VERSION = pubspecYaml.version.split("+")[0]
                     }
                     catch(Exception e){
                         jenkins.unstable("AN error occured during build step. Please, verify the logs.")
